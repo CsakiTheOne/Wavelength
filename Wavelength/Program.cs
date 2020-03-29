@@ -10,6 +10,7 @@ namespace Wavelength
     {
         static void Main(string[] args)
         {
+            Game.Menu();
         }
     }
 }
