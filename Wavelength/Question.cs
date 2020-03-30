@@ -9,8 +9,12 @@ namespace Wavelength
     class Question
     {
         public string Text { get; private set; }
-        public string[] Answers { get; private set; }
+        public string[] Answers { get; private set; } = new string[] { "Igen", "Nem" };
 
+        public Question(string text)
+        {
+            Text = text;
+        }
         public Question(string text, string[] answers)
         {
             Text = text;

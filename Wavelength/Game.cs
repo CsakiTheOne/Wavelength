@@ -23,11 +23,11 @@ namespace Wavelength
             {
                 Console.Clear();
 
-                Console.WriteLine("Wavelength");
+                Console.WriteLine("Wavelength\n\r");
 
                 Console.WriteLine("1. Egy gyors kérdés");
-                Console.WriteLine("2. 3 kérdés");
-                Console.WriteLine("3. Az összes!");
+                Console.WriteLine("2. 5 kérdés");
+                Console.WriteLine($"3. Az összes! ({Questions.Default.Count})");
                 Console.WriteLine("9. Kilépés");
 
                 key = Console.ReadKey().Key;
@@ -38,7 +38,7 @@ namespace Wavelength
                         Gameplay(1);
                         break;
                     case ConsoleKey.D2:
-                        Gameplay(3);
+                        Gameplay(5);
                         break;
                     case ConsoleKey.D3:
                         Gameplay(Questions.Default.Count);
@@ -54,20 +54,22 @@ namespace Wavelength
             foreach (Question question in questions)
             {
                 Console.Clear();
-                Console.WriteLine(FormatQuestion(question.ToString()));
+                Console.WriteLine(FormatText(question.ToString()));
 
                 char player1 = Console.ReadKey().KeyChar;
                 Console.SetCursorPosition(0, Console.CursorTop);
-                Console.Write(' ');
-                Console.SetCursorPosition(0, Console.CursorTop);
+                Console.Write(".");
 
                 char player2 = Console.ReadKey().KeyChar;
                 Console.SetCursorPosition(0, Console.CursorTop);
-                Console.Write("Kész!");
+                Console.Write(FormatText("..\n\r%pr nyomj meg egy gombot!"));
+                Console.ReadKey();
 
+                Console.SetCursorPosition(0, Console.CursorTop);
+                Console.WriteLine($"Válaszok:\t{player1} {player2}\t\t");
                 Console.ReadKey();
                 Console.SetCursorPosition(0, Console.CursorTop);
-                Console.Write($"Válaszok:\t{player1} {player2}");
+                Console.Write(".");
                 Console.ReadKey();
             }
         }
@@ -89,7 +91,7 @@ namespace Wavelength
             return questions;
         }
 
-        static string FormatQuestion(string text)
+        static string FormatText(string text)
         {
             Random rdm = new Random();
             text = text.Replace("%pr", rdm.Next(2) == 0 ? player1 : player2);
